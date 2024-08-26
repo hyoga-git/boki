@@ -1,0 +1,64 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+.box {
+  width:600px;
+  padding:50px;
+  margin:20px auto;
+  border: 1px solid black;
+  text-align:left;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.box div {
+  border: 1px solid black;
+  margin:30 auto;
+  padding: 40px;
+}
+.box h3{
+  text-decoration: underline;
+}
+.box p{
+  margin:30px auto;
+}
+.zengetu {
+  order: 0;
+}
+.kansei {
+  order: 1;
+}
+.tougetu {
+  order: 2;
+}
+.getumatu {
+  order: 3;
+}
+
+.slider-container {
+  position: relative;
+  width: 300px; /* スライダーの幅を指定 */
+  height: 50px; /* 高さを指定して、重なりをコントロール */
+}
+
+.slider-container input[type="range"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none; /* スライダーが重なっても操作できるようにする */
+}
+
+.slider-container input[type="range"].slider-1 {
+  z-index: 1;
+  pointer-events: auto; /* 最前面のスライダーのみ操作可能にする */
+}
+
+.slider-container input[type="range"].slider-2 {
+  z-index: 2;
+}
+
+.slider-container input[type="range"].slider-3 {
+  z-index: 3;
+}
