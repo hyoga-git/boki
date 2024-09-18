@@ -6,16 +6,22 @@
   width:600px;
   padding:50px;
   margin:20px auto;
+  background-color: rgb(0, 255, 208);
   border: 1px solid black;
   text-align:left;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  
 }
 .box div {
+  background-color:#ffffff;
   border: 1px solid black;
   margin:30 auto;
   padding: 40px;
+  justify-content: center;
+  align-items: center;
+  
 }
 .box h3{
   text-decoration: underline;
@@ -35,30 +41,33 @@
 .getumatu {
   order: 3;
 }
-
-.slider-container {
-  position: relative;
-  width: 300px; /* スライダーの幅を指定 */
-  height: 50px; /* 高さを指定して、重なりをコントロール */
+.modal-input{
+  width:40px;
 }
 
-.slider-container input[type="range"] {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  pointer-events: none; /* スライダーが重なっても操作できるようにする */
+.home-top{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.slider-container input[type="range"].slider-1 {
-  z-index: 1;
-  pointer-events: auto; /* 最前面のスライダーのみ操作可能にする */
+/* スマートフォン対応 */
+@media (max-width: 768px) {
+  .box {
+    flex-direction: column;
+    width:60%;
+  }
+  
+  .box div {
+    flex: 1 1 100%; /* スマートフォンでは各要素を100%幅にする */
+    margin: 10px 0;
+    
+  }
 }
 
-.slider-container input[type="range"].slider-2 {
-  z-index: 2;
-}
-
-.slider-container input[type="range"].slider-3 {
-  z-index: 3;
+/* タブレット対応 */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .box div {
+    flex: 1 1 calc(50% - 10px); /* タブレットでは50%幅を維持 */
+  }
 }

@@ -5,18 +5,24 @@ import "./App.css";
 
 const customStyles = {
   content: {
-    top: "50%",
+    top: "55%",
     left: "50%",
     right: "auto",
     bottom: "auto",
     transform: "translate(-50%, -50%)",
-    minWidth: "50%",
     height:"50%",
+    margin:"auto",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    width:"clamp(15.625rem, -12.153rem + 57.87vw, 31.25rem)",
   },
 };
 
 
-export default function App() {
+
+export default function Boki() {
   const [priceZengetu, setPriceZengetu] = useState(0);
   const [numberZengetu, setNumberZengetu] = useState(0);
   
@@ -39,12 +45,7 @@ export default function App() {
   const [selectType, setSelectType] = useState("chokuzai"); // 計算方法の選択状態
   const [editModalIsOpen, setEditModalIsOpen] = useState(false);
 
-
-
-
-
  
-  
 
 
   // 計算結果を保存する状態
@@ -129,12 +130,14 @@ useEffect(()=>{
   return (
     <div className="App">
       <section id="bookkeeping">
+
         <h2>総合原価計算ジェネレーター</h2>
 
 
-        <Container maxWidth="sm">
+        <Container maxWidth="sm" >
+          <div className="modal-class">
       <Modal isOpen={editModalIsOpen} style={customStyles}>
-        前月:進捗度<input type="number"
+        <p>前月:進捗度<input type="number" class="modal-input"
                   max="100"
                   onChange={(e) => {
                     const valueZen = parseInt(e.target.value, 10);
@@ -144,13 +147,13 @@ useEffect(()=>{
                       setShinchokuZen(valueZen);
                     }
                   }}
-                  />%
+                  />%</p>
         <br />
         <br />
-        月末:進捗度
+        <p>月末:進捗度
 <input
-  type="number"
-  max="100" // 最大値を100に制限 (ブラウザ側でのヒント)
+  type="number" class="modal-input"
+  max="100" // 最大値を100に制限 (ブラウザ側でのヒント)a
   onChange={(e) => {
     const valueMatu = parseInt(e.target.value, 10);
     if (valueMatu > 100) {
@@ -159,7 +162,7 @@ useEffect(()=>{
       setShinchokuMatu(valueMatu);
     }
   }}
-/>%
+/>%</p>
         <br />
         <Button
         variant="contained"
@@ -171,8 +174,9 @@ useEffect(()=>{
         <p>進捗度を更新する</p>
       </Button>
       </Modal>
+      </div>
     </Container>
-             <form>
+             <form class="title-top">
           <input
             type="radio"
             name="answerType"
@@ -211,7 +215,7 @@ useEffect(()=>{
           平均法
           <br />
         </form>
-
+        
         <div className="box">
           <div className="zengetu">
             <h3>前月({shinchokuZen}%)</h3>
