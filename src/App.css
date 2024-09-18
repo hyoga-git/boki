@@ -1,3 +1,10 @@
+h2{
+  text-align: center;
+  text-decoration: underline;
+  padding:10px;
+  margin-bottom:50px;
+}
+
 .App {
   font-family: sans-serif;
   text-align: center;
@@ -51,17 +58,36 @@
   align-items: center;
 }
 
+.top-explanation{
+  font-size:1.3rem;
+  border: 3px solid black;
+  padding:30px;
+  margin:auto;
+  width:clamp(12.5rem, -6.818rem + 96.59vw, 65.625rem);
+  text-align: center;
+}
+
+.top-calu{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  gap:30px;
+}
+
 /* スマートフォン対応 */
 @media (max-width: 768px) {
   .box {
     flex-direction: column;
     width:60%;
   }
+
   
   .box div {
     flex: 1 1 100%; /* スマートフォンでは各要素を100%幅にする */
     margin: 10px 0;
-    
+  }
+  .top-calu table{
+    display: none;
   }
 }
 

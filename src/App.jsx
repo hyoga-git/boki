@@ -22,19 +22,19 @@ const customStyles = {
 
 
 
-export default function Boki() {
-  const [priceZengetu, setPriceZengetu] = useState(0);
-  const [numberZengetu, setNumberZengetu] = useState(0);
+export default function App() {
+  const [priceZengetu, setPriceZengetu] = useState(5080);
+  const [numberZengetu, setNumberZengetu] = useState(20);
   
   
-  const [priceTougetu, setPriceTougetu] = useState(0);
+  const [priceTougetu, setPriceTougetu] = useState(28800);
   const [numberTougetu, setNumberTougetu] = useState(0);
 
-  const [priceKansei, setPriceKansei] = useState(0);
-  const [numberKansei, setNumberKansei] = useState(0);
+  const [priceKansei, setPriceKansei] = useState(31460);
+  const [numberKansei, setNumberKansei] = useState(130);
 
-  const [priceGetumatu, setPriceGetumatu] = useState(0);
-  const [numberGetumatu, setNumberGetumatu] = useState(0);
+  const [priceGetumatu, setPriceGetumatu] = useState(2420);
+  const [numberGetumatu, setNumberGetumatu] = useState(10);
   
 
 
@@ -121,20 +121,103 @@ useEffect(()=>{
 
   // 完成品総合原価と月末仕掛品原価を計算
   useEffect(() => {
+    juge();
     calculateNumberTougetu();
-
-  }, [numberZengetu, numberKansei, numberGetumatu,selectType]);
+    
+  }, [priceZengetu,priceTougetu,numberZengetu, numberKansei, numberGetumatu,selectType,selectMethod]);
 
   // 計算方法や価格の変更に応じて計算結果を更新
 
   return (
     <div className="App">
+      
       <section id="bookkeeping">
+      <h2>総合原価計算ジェネレーター</h2>
+        
+        <div class="top-explanation">
+        <h2>説明</h2>
+        <hr />
+        <p>工業簿記/原価計算における総合原価計算について値を入力する事で自動的に解答が求められるジェネレーター</p>
+        <p>月初製造原価、当月製造原価、月初仕掛品個数、月末仕掛品量個数、当月完成品個数を入力する</p>
+        <p>金額の計算方法を先入先出法or平均法で選択し完成品製造原価と月末製造原価が求められる</p>      
+        </div>
+        <h2>例/直接材料費についての計算を行います。計算方法を選択し、解答を算出してください</h2>
 
-        <h2>総合原価計算ジェネレーター</h2>
+        
+        <div class="top-calu">
+        <table>
+        <caption>生産データ</caption>
+        <thead>
+            <tr>
+                <th>項目</th>
+                <th>数量</th>
+                <th>進捗度</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>月初仕掛品量</td>
+                <td>20個</td>
+                <td>20%</td>
+            </tr>
+            <tr>
+                <td>当月投入量</td>
+                <td>120個</td>
+                <td>—</td>
+            </tr>
+            <tr>
+                <td>投入合計</td>
+                <td>140個</td>
+                <td>—</td>
+            </tr>
+            <tr>
+                <td>当月完成品量</td>
+                <td>130個</td>
+                <td>—</td>
+            </tr>
+            <tr>
+                <td>月末仕掛品量</td>
+                <td>10個</td>
+                <td>80%</td>
+            </tr>
+            <tr>
+                <td>生産合計</td>
+                <td>140個</td>
+                <td>—</td>
+            </tr>
+        </tbody>
+    </table>
 
-
-        <Container maxWidth="sm" >
+    <table>
+        <caption>原価データ</caption>
+        <thead>
+            <tr>
+                <th>項目</th>
+                <th>金額</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>月初仕掛品原価（直接材料費）</td>
+                <td>5,080円</td>
+            </tr>
+            <tr>
+                <td>月初仕掛品原価（加工費）</td>
+                <td>364円</td>
+            </tr>
+            <tr>
+                <td>当月製造費用（直接材料費）</td>
+                <td>28,800円</td>
+            </tr>
+            <tr>
+                <td>当月製造費用（加工費）</td>
+                <td>21,440円</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="boki-generator">
+          
+    <Container maxWidth="sm" >
           <div className="modal-class">
       <Modal isOpen={editModalIsOpen} style={customStyles}>
         <p>前月:進捗度<input type="number" class="modal-input"
@@ -177,6 +260,7 @@ useEffect(()=>{
       </div>
     </Container>
              <form class="title-top">
+              <span>材料について</span>
           <input
             type="radio"
             name="answerType"
@@ -194,17 +278,20 @@ useEffect(()=>{
               
             }}
             checked={selectType === "shikakari"}
-          />
+/>
           仕掛品
           <br />
           <br />
+          <span>計算方法
+          </span>
           <input
             type="radio"
             name="answer-method"
             value="sakiire"
             onChange={() => setSelectMethod("sakiire")}
-            checked={selectMethod === "sakiire"}
+            
           />
+          
           先入先出法
           <input
             type="radio"
@@ -297,7 +384,13 @@ useEffect(()=>{
         </div>
 
 
-      </section>
+   
+    </div>
+    </div>
+
+
+    </section>
     </div>
   );
 }
+
