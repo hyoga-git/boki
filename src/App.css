@@ -1,3 +1,4 @@
+
 h2{
   text-align: center;
   text-decoration: underline;
@@ -65,6 +66,14 @@ h2{
   margin:auto;
   width:clamp(12.5rem, -6.818rem + 96.59vw, 65.625rem);
   text-align: center;
+}
+.top-calu table{
+  width:600px;
+  border: 1px solid black;
+  margin-bottom:50px;
+}
+.top-calu tr td{
+  border:1px solid  black;
 }
 
 .top-calu{
