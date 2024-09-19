@@ -133,6 +133,7 @@ useEffect(()=>{
       
       <section id="bookkeeping">
       <h2>総合原価計算ジェネレーター</h2>
+      
         
         <div class="top-explanation">
         <h2>説明</h2>
